@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: auth_service_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: auth_service_development
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    stdin_open: true
+    tty: true
+  
+  test:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && RAILS_ENV=test bundle exec rspec"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: auth_service_test
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      stdin_open: true
+      tty: true
+
+volumes:
+  postgres_data:

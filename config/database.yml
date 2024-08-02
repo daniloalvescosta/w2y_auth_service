@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: postgres
+  port: 5432
+  host: localhost
+
+development:
+  <<: *default
+  database: w2y_auth_service_development
+
+test:
+  <<: *default
+  database: w2y_auth_service_test
+
+production:
+  <<: *default
+  database: w2y_auth_service_production
+  username: w2y_auth_service
+  password: <%= ENV["W2Y_AUTH_SERVICE_DATABASE_PASSWORD"] %>

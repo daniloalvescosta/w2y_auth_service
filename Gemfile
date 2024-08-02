@@ -25,7 +25,7 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop-rspec'
-  gem 'simplecov', '~> 0.22.0'
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 group :development do

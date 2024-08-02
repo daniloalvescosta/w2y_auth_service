@@ -1,24 +1,17 @@
-# README
+## **W2Y Auth Service**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![W2Y logo](https://github.com/daniloalvescosta/w2y_auth_service/blob/main/app/assets/images/w2y.png)
 
-Things you may want to cover:
+Serviço de autenticação do sistema W2Y, para executar ele é simples:
 
-* Ruby version
+    docker compose build
+    docker compose up
 
-* System dependencies
 
-* Configuration
+Caso queira rodar a suit de testes individualmente:
 
-* Database creation
+    docker-compose run --rm test
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Caso queira rodar as migrations individualmente:
+docker compose exec web rails db:create
+docker compose exec web rails db:migrate

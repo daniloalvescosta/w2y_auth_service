@@ -13,5 +13,7 @@ Caso queira rodar a suit de testes individualmente:
     docker-compose run --rm test
 
 Caso queira rodar as migrations individualmente:
-docker compose exec web rails db:create
-docker compose exec web rails db:migrate
+
+    docker compose exec web rails db:create
+    docker compose exec web rails db:migrate
+
